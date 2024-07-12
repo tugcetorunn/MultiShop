@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MultiShop.Data;
 
@@ -11,9 +12,11 @@ using MultiShop.Data;
 namespace MultiShop.Presentation.Migrations
 {
     [DbContext(typeof(MultiShopContext))]
-    partial class MultiShopContextModelSnapshot : ModelSnapshot
+    [Migration("20240712200042_base120724")]
+    partial class base120724
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,8 +62,7 @@ namespace MultiShop.Presentation.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Header")
                         .IsRequired()

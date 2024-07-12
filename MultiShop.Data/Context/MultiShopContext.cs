@@ -19,16 +19,20 @@ namespace MultiShop.Data
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductComment> ProductComments { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; } 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder) // extension method yapacağız
         {
             // entity configuration larının uygulamaya alındığı tetiklendiği yer;
-            modelBuilder.ApplyConfiguration(new CategoryConfiguration()); 
-        }
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new SliderConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductCommentConfiguration());
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("name=MultiShopConnection", b => b.MigrationsAssembly("MultiShop.Presentation"));
-        //}
+        }
     }
 }

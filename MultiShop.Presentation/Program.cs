@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MultiShop.Business.Services;
+using MultiShop.Business;
 using MultiShop.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +13,7 @@ builder.Services.AddDbContext<MultiShopContext>(options => options
                                                            // db connection edilmesi için
 
 builder.Services.AddScoped<ICategoryService,CategoryService>(); // ICategoryService gönderdiðimizde bizi CategoryService e götürmesi için
+builder.Services.AddScoped<ISliderService,SliderService>(); 
 
 var app = builder.Build();
 

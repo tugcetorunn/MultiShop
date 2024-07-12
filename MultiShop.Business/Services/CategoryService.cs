@@ -5,18 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MultiShop.Business.Services;
-
-public class CategoryService : ICategoryService
-{
-    public List<Category> GetCategories()
+namespace MultiShop.Business
+{ 
+    public class CategoryService : ICategoryService
     {
-        // deneme
-        Category category1 = new Category() { CategoryId = 1, CategoryName = "textile" };
-        Category category2 = new Category() { CategoryId = 2, CategoryName = "foods and drinks" };
+        private readonly MultiShopContext context;
+        public CategoryService(MultiShopContext _context)
+        {
+            context = _context;
+        }
+        public List<Category> GetCategories()
+        {
+            var list = context.Categories.ToList();
+            return list;
+        }
 
-        List<Category> list = new List<Category>() { category1, category2 };
-        
-        return list;
+        public Category? GetCategoryById(int id)
+        {
+            var category = context.Categories.Where(c => c.CategoryId == id).FirstOrDefault();
+            return category;
+        }
     }
 }

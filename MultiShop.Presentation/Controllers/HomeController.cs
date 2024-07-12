@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.Business.Services;
+using MultiShop.Business;
 
 namespace MultiShop.Presentation.Controllers
 {
@@ -14,6 +14,11 @@ namespace MultiShop.Presentation.Controllers
         {
             var list = categoryService.GetCategories(); // controllerlarda sadece hazır metodları ÇAĞIRIRIZ. context ya da crud olmaz.
             return View(list);
+        }
+        public IActionResult Detail(int id)
+        {
+            var category = categoryService.GetCategoryById(id);
+            return View(category);
         }
     }
 }
