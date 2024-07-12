@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MultiShop.Business\MultiShop.Business.csproj" />
     <ProjectReference Include="..\MultiShop.Data\MultiShop.Data.csproj" />
   </ItemGroup>
 
