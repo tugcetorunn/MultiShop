@@ -27,12 +27,21 @@ namespace MultiShop.Data.Extensions
             var products = ManuelDummyData.CreateProducts(categories);
             modelBuilder.Entity<Product>().HasData(products);
 
-
+            var sliders = ManuelDummyData.CreateSliders();
+            modelBuilder.Entity<Slider>().HasData(sliders);
         }
     }
 
     public static class ManuelDummyData
     {
+        public static List<Slider> CreateSliders()
+        {
+            var sliders = new List<Slider>();
+
+
+
+            return sliders;
+        }
         public static List<Category> CreateCategories()
         {
             var categories = new List<Category>();

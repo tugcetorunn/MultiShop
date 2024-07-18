@@ -15,6 +15,9 @@ builder.Services.AddDbContext<MultiShopContext>(options => options
 builder.ServiceExtension(); // ICategoryService gönderdiðimizde bizi CategoryService e götürmesi için yazýlan scope metodlarýn
                             // extension metodunu çalýþtýrdýðýmýz yer
 
+// automapper extension metodunu çalýþtýrdýðýmýz yer
+builder.Services.AddAutoMapperProfiles();
+
 var app = builder.Build();
 
 app.UseRouting(); // route u eklemeden önce yazýyoruz

@@ -1,10 +1,11 @@
-﻿using MultiShop.Data;
+﻿using MultiShop.Business.Dtos;
+using MultiShop.Data;
 
 namespace MultiShop.Business 
 {
     public interface ISliderService
     {
-        List<Slider> GetSliders();
+        List<SliderDto> GetSliders();
     }
 }
 

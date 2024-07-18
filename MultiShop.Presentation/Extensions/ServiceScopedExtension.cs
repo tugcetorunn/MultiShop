@@ -9,6 +9,7 @@ namespace MultiShop.Presentation.Extensions
             // ICategoryService gönderdiğimizde bizi CategoryService e götürmesi için
             webApplicationBuilder.Services.AddScoped<ICategoryService, CategoryService>();
             webApplicationBuilder.Services.AddScoped<ISliderService, SliderService>();
+            webApplicationBuilder.Services.AddScoped<IProductService, ProductService>();
         }
     }
 }

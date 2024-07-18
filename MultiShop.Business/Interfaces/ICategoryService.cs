@@ -1,11 +1,12 @@
-﻿using MultiShop.Data;
+﻿using MultiShop.Business.Dtos;
 
 namespace MultiShop.Business
 {
     public interface ICategoryService
     {
-        List<Category> GetCategories();
-        Category? GetCategoryById(int id);
+        List<CategoryDto> GetCategoriesWithProducts();
+        CategoryDto? GetCategoryById(int id);
+        bool InsertCategory(CategoryDto categoryDto);
     }
 }
 
