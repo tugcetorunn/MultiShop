@@ -13,6 +13,8 @@ namespace MultiShop.Data.Configurations
         public void Configure(EntityTypeBuilder<ProductImage> builder)
         {
             builder.HasKey(p => p.ProductImageId);
+            builder.Property(p => p.ProductImageId)
+                   .ValueGeneratedOnAdd();
             builder.Property(p => p.Image)
                    .IsRequired();
             builder.HasOne(p => p.Product)

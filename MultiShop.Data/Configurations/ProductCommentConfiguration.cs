@@ -13,6 +13,8 @@ namespace MultiShop.Data.Configurations
         public void Configure(EntityTypeBuilder<ProductComment> builder)
         {
             builder.HasKey(p => p.ProductCommentId);
+            builder.Property(p => p.ProductCommentId)
+                   .ValueGeneratedOnAdd();
             builder.Property(p => p.Rating)
                    .IsRequired();
             builder.Property(p => p.CommenterName)
@@ -21,7 +23,7 @@ namespace MultiShop.Data.Configurations
             builder.Property(p => p.CommenterEmail)
                    .HasMaxLength(50);
             builder.Property(p => p.Comment)
-                   .HasMaxLength(200);
+                   .HasMaxLength(100);
             builder.HasOne(p => p.Product)
                    .WithMany(p => p.ProductComments)
                    .HasForeignKey(p => p.ProductId);

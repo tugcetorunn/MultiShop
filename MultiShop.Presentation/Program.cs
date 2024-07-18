@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using MultiShop.Business;
 using MultiShop.Data;
+using MultiShop.Presentation.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +12,8 @@ builder.Services.AddDbContext<MultiShopContext>(options => options
                                                            ,b => b.MigrationsAssembly("MultiShop.Presentation")));
                                                            // db connection edilmesi için
 
-builder.Services.AddScoped<ICategoryService,CategoryService>(); // ICategoryService gönderdiðimizde bizi CategoryService e götürmesi için
-builder.Services.AddScoped<ISliderService,SliderService>(); 
+builder.ServiceExtension(); // ICategoryService gönderdiðimizde bizi CategoryService e götürmesi için yazýlan scope metodlarýn
+                            // extension metodunu çalýþtýrdýðýmýz yer
 
 var app = builder.Build();
 

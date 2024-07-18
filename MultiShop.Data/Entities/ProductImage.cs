@@ -5,6 +5,7 @@
         public int ProductImageId { get; set; }
         public required string Image { get; set; }
         public int ProductId { get; set; }
-        public required Product Product { get; set; }
+        public Product? Product { get; set; }
     }
 }
+

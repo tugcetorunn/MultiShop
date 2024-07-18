@@ -8,6 +8,6 @@
         public string? CommenterEmail { get; set; }
         public short Rating { get; set; }
         public int ProductId { get; set; }
-        public required Product Product { get; set; }
+        public Product? Product { get; set; }
     }
 }

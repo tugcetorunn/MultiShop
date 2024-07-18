@@ -10,5 +10,11 @@
         White,
         Gray,
         Pink,
+        Natural,
+        Multicolor,
+        Clear,
+        NavyBlue,
+        Brown,
+        Beige
     }
 }

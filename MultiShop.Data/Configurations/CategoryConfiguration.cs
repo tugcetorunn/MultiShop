@@ -16,6 +16,8 @@ namespace MultiShop.Data.Configurations
                                            // bu tanımı yapmak zorunlu değil db nin olulturacağı plural isimden farklı
                                            // isimde olmasını istiyorsak kullanabiliriz.
             builder.HasKey(c => c.CategoryId);
+            builder.Property(p => p.CategoryId)
+                   .ValueGeneratedOnAdd();
             builder.Property(c => c.CategoryName)
                    .IsRequired() // bu ifadeyi burada tanımlasak da property olarak da required ekiyle tanımlanması gerek.
                    .HasMaxLength(50);

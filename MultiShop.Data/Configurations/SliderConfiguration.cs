@@ -13,6 +13,8 @@ namespace MultiShop.Data.Configurations
         public void Configure(EntityTypeBuilder<Slider> builder)
         {
             builder.HasKey(s => s.SliderId);
+            builder.Property(p => p.SliderId)
+                   .ValueGeneratedOnAdd();
             builder.Property(s => s.Header)
                    .IsRequired() 
                    .HasMaxLength(50);
