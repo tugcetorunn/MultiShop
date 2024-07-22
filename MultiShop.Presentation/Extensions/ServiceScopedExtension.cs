@@ -1,6 +1,4 @@
-﻿using MultiShop.Business;
-
-namespace MultiShop.Presentation.Extensions
+﻿namespace MultiShop.Presentation.Extensions
 {
     public static class ServiceScopedExtension
     {
@@ -10,6 +8,7 @@ namespace MultiShop.Presentation.Extensions
             webApplicationBuilder.Services.AddScoped<ICategoryService, CategoryService>();
             webApplicationBuilder.Services.AddScoped<ISliderService, SliderService>();
             webApplicationBuilder.Services.AddScoped<IProductService, ProductService>();
+            webApplicationBuilder.Services.AddScoped<IProductCommentService, ProductCommentService>();
         }
     }
 }

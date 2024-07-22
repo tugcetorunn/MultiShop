@@ -1,29 +1,47 @@
-﻿using MultiShop.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MultiShop.Business
+﻿namespace MultiShop.Business
 {
     public class ProductService : IProductService
     {
         private readonly MultiShopContext context;
-        public ProductService(MultiShopContext _context)
+        private readonly IMapper mapper;
+        public ProductService(MultiShopContext _context, IMapper _mapper)
         {
             context = _context;
+            mapper = _mapper;
         }
-        public List<Product> GetProducts()
+        public List<ProductDto> GetProducts()
         {
-            var list = context.Products.ToList();
-            return list;
+            var products = context.Products.ToList();
+            List<ProductDto> productDtos = mapper.Map<List<ProductDto>>(products);
+            return productDtos;
         }
 
-        public Product? GetProductByCategory(int id)
+        public ProductDto? GetProductByCategory(int id)
         {
-            var product = context.Products.Where(c => c.CategoryId == id).FirstOrDefault();
-            return product;
+            var product = context.Products.Where(c => c.CategoryId == id).Include(p => p.ProductImages).Include(p => p.ProductImages).
+                FirstOrDefault();
+            ProductDto productDto = mapper.Map<ProductDto>(product);
+            return productDto;
+        }
+
+        public List<ProductDto> GetProductsByShowPlace(ShowPlace showPlace)
+        {
+            List<Product> products = new List<Product>();
+
+            if (showPlace == ShowPlace.Featured)
+            {
+                products = context.Products.Where(p => p.ShowPlace == ShowPlace.Featured).Take(8)
+                                           .Include(p => p.ProductImages).Include(p => p.ProductComments).ToList();
+
+            }
+            else
+            {
+                products = context.Products.OrderByDescending(p => p.CreatedDate)
+                                           .Include(p => p.ProductImages)
+                                           .Include(p => p.ProductComments).Take(8).ToList();
+            }
+            List<ProductDto> productDtos = mapper.Map<List<ProductDto>>(products);
+            return productDtos;
         }
     }
 }

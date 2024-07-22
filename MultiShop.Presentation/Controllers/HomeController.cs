@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.Business;
-using MultiShop.Business.Dtos;
-using MultiShop.Data;
-using MultiShop.Data.Configurations;
-
-namespace MultiShop.Presentation.Controllers
+﻿namespace MultiShop.Presentation.Controllers
 {
     public class HomeController : Controller
     {

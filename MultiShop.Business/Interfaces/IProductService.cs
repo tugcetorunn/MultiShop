@@ -1,10 +1,9 @@
-﻿using MultiShop.Data;
-
-namespace MultiShop.Business
+﻿namespace MultiShop.Business
 {
     public interface IProductService
     {
-        Product? GetProductByCategory(int id);
-        List<Product> GetProducts();
+        List<ProductDto> GetProducts();
+        ProductDto? GetProductByCategory(int id);
+        List<ProductDto> GetProductsByShowPlace(ShowPlace showPlace);
     }
 }

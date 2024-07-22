@@ -1,13 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MultiShop.Data.Configurations;
-using MultiShop.Data.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MultiShop.Data
+﻿namespace MultiShop.Data
 {
     public class MultiShopContext : DbContext
     {
@@ -28,8 +19,8 @@ namespace MultiShop.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder) // extension method yapacağız
         {
             // entity configuration larının uygulamaya alındığı tetiklendiği yer(extension çağırılıyor);
-            modelBuilder.ModelBuilderExtension();
-            modelBuilder.CreateDummyData();
+            modelBuilder.ConfigurationExtension();
+            modelBuilder.CreateDummyDataExtension();
         }
         
     }

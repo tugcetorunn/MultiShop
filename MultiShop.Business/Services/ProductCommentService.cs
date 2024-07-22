@@ -1,25 +1,22 @@
-﻿using MultiShop.Business.Interfaces;
-using MultiShop.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace MultiShop.Business.Services
+namespace MultiShop.Business
 {
     public class ProductCommentService : IProductCommentService
     {
         private readonly MultiShopContext context;
-        public ProductCommentService(MultiShopContext _context)
+        private readonly IMapper mapper;
+        public ProductCommentService(MultiShopContext _context, IMapper _mapper)
         {
             context = _context;
+            mapper = _mapper;
         }
 
-        public List<ProductComment> GetProductComments()
+        public List<ProductCommentDto> GetProductComments()
         {
             var comments = context.ProductComments.ToList();
-            return comments;
+            List<ProductCommentDto> productCommentDtos = mapper.Map<List<ProductCommentDto>>(comments);
+            return productCommentDtos;
         }
     }
 }

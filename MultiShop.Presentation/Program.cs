@@ -1,7 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using MultiShop.Data;
-using MultiShop.Presentation.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews(); // controller ve view leri görebilmesi için

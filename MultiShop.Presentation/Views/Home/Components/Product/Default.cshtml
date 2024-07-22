@@ -1,0 +1,51 @@
+﻿@using MultiShop.Business.Dtos
+@model List<ProductDto>
+<div class="row px-xl-5">
+    @*.product-img img {
+    width: 100% !important;*/ /* Genişliği konteynırın genişliğine göre ayarlar */
+    /*height: 200px !important;*/ /* Yüksekliği sabitler */
+    /*object-fit: cover !important;*/ /* Resimlerin konteynır içinde düzgün şekilde kırpılmasını sağlar */
+    /*display: block !important;
+    }*@
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+            <div class="product-item bg-light mb-4">
+                <div class="product-img position-relative overflow-hidden">
+                    <img class="img-fluid w-100" style="height: 200px !important; object-fit: cover !important;" src="@(item.ProductImages?.FirstOrDefault()?.Image)" alt="">
+                    @* "@item.ProductImages?.FirstOrDefault().Image" ifadesi null olabilir veriyordu, onun yerine
+                    "" @(item.ProductImages.FirstOrDefault()?.Image ?? "defaultImagePath")"" ifadesini kullandım (chatgpt)
+                    resim var ise ilkini getir, yoksa default resmi getir *@
+                    <div class="product-action">
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                    </div>
+                </div>
+                <div class="text-center py-4">
+                    <a class="h6 text-decoration-none text-truncate" href="">@item.ProductName</a>
+                    <div class="d-flex align-items-center justify-content-center mt-2">
+                        @if (item.SalePrice != null)
+                        {
+                            <h5>$@item.SalePrice</h5><h6 class="text-muted ml-2"><del>@item.Price</del></h6>
+                        }
+                        else
+                        {
+                            <h5>$@item.Price</h5>
+                        }
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center mb-1">
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small class="fa fa-star text-primary mr-1"></small>
+                        <small>(@item.ProductComments?.Count())</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

@@ -1,9 +1,7 @@
-﻿using MultiShop.Data;
-
-namespace MultiShop.Business
+﻿namespace MultiShop.Business
 {
     public interface IProductCommentService
     {
-        List<ProductComment> GetProductComments();
+        List<ProductCommentDto> GetProductComments();
     }
 }

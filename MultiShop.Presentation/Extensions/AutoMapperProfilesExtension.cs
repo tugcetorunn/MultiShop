@@ -1,6 +1,4 @@
-﻿using MultiShop.Business.Mapping;
-
-namespace MultiShop.Presentation.Extensions
+﻿namespace MultiShop.Presentation.Extensions
 {
     public static class AutoMapperProfilesExtension
     {
@@ -12,6 +10,7 @@ namespace MultiShop.Presentation.Extensions
             services.AddAutoMapper(typeof(SliderMappingProfile));
             services.AddAutoMapper(typeof(CategoryMappingProfile));
             services.AddAutoMapper(typeof(ProductMappingProfile));
+            services.AddAutoMapper(typeof(ProductCommentMappingProfile));
         }
     }
 }

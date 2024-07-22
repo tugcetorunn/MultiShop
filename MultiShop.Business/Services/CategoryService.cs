@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using MultiShop.Business.Dtos;
-using MultiShop.Data;
-
-namespace MultiShop.Business
+﻿namespace MultiShop.Business
 { 
     public class CategoryService : ICategoryService
     {
@@ -13,6 +8,12 @@ namespace MultiShop.Business
         {
             context = _context;
             mapper = _mapper;
+        }
+        public List<CategoryDto> GetCategories()
+        {
+            var categories = context.Categories.ToList();
+            List<CategoryDto> categoryDtos = mapper.Map<List<CategoryDto>>(categories);
+            return categoryDtos;
         }
         public List<CategoryDto> GetCategoriesWithProducts()
         {

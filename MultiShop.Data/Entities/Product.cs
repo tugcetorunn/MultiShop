@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MultiShop.Data
+﻿namespace MultiShop.Data
 {
     public class Product : BaseEntity
     {
@@ -23,7 +16,7 @@ namespace MultiShop.Data
         public Category? Category { get; set; }
         public List<ProductImage>? ProductImages { get; set; }
         public List<ProductComment>? ProductComments { get; set; }
-
+        public ShowPlace ShowPlace { get; set; }
 
     }
 }

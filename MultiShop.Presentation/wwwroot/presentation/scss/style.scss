@@ -248,6 +248,13 @@ $input-placeholder-color: #999999;
     transition: .3s .15s;
 }
 
+/*.product-img img {
+    width: 100% !important;*/ /* Geniþliði konteynýrýn geniþliðine göre ayarlar */
+    /*height: 200px !important;*/ /* Yüksekliði sabitler */
+    /*object-fit: cover !important;*/ /* Resimlerin konteynýr içinde düzgün þekilde kýrpýlmasýný saðlar */
+    /*display: block !important;
+}*/
+
 .product-item .product-img img  {
     transition: .5s;
 }
