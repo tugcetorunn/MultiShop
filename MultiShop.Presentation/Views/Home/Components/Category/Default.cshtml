@@ -8,11 +8,11 @@
                 <a class="text-decoration-none" href="">
                     <div class="cat-item d-flex align-items-center mb-4">
                         <div class="overflow-hidden" style="width: 100px; height: 100px;">
-                            <img class="img-fluid" src="@item.Image" alt="No Photo">
+                            <img class="img-fluid" style="height: 200px !important; object-fit: cover !important;" src="@item.Image" alt="No Photo">
                         </div>
                         <div class="flex-fill pl-3">
                             <h6>@item.CategoryName</h6>
-                            <small class="text-body">@item.Products?.Count()</small>
+                            <small class="text-body">@item.Products?.Count() products</small>
                         </div>
                     </div>
                 </a>

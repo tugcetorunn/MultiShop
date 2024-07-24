@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.Data
 {
-    public class ProductComment
+    public class ProductComment : BaseEntity
     {
         public int ProductCommentId { get; set; }
         public string? Comment { get; set; }

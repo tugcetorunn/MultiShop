@@ -12,19 +12,21 @@
         <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
             <div class="product-item bg-light mb-4">
                 <div class="product-img position-relative overflow-hidden">
-                    <img class="img-fluid w-100" style="height: 200px !important; object-fit: cover !important;" src="@(item.ProductImages?.FirstOrDefault()?.Image)" alt="">
+                    <img class="img-fluid w-100" style="height: 200px !important; object-fit: cover !important;" src="@(item.ProductImages?.FirstOrDefault()?.Image)" alt="" href="Product/Detail/@item.ProductId">
                     @* "@item.ProductImages?.FirstOrDefault().Image" ifadesi null olabilir veriyordu, onun yerine
                     "" @(item.ProductImages.FirstOrDefault()?.Image ?? "defaultImagePath")"" ifadesini kullandım (chatgpt)
                     resim var ise ilkini getir, yoksa default resmi getir *@
                     <div class="product-action">
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a> @* chart a eklenecek. *@
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a> @* favorites a eklenecek. *@
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a> @* similar products gelecek. *@
+                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a> @* product name ile arama yapacak. *@
+                                                                   
                     </div>
                 </div>
                 <div class="text-center py-4">
-                    <a class="h6 text-decoration-none text-truncate" href="">@item.ProductName</a>
+                                                                     @* daha sonra @item.ProductLink olacak (handwoven-jute-basket) *@
+                    <a class="h6 text-decoration-none text-truncate" href="Product/Detail/@item.ProductId">@item.ProductName</a>
                     <div class="d-flex align-items-center justify-content-center mt-2">
                         @if (item.SalePrice != null)
                         {

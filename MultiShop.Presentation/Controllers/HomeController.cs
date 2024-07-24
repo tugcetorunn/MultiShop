@@ -16,19 +16,17 @@
         }
         public IActionResult Index()
         {
+            // controllerlarda sadece hazır metodları ÇAĞIRIRIZ. context ya da crud olmaz.
             // Index sayfamızda sadece category listesi yok model olarak tek bir tip gönderebiliyoruz fakat slider ve product ların da
             // gönderilmesi gerekiyor. bu durumda birden fazla model göndermemiz gerektiğinde iki yol var. 1. kod fazlalığı yapacak;
             // HomeController class ının altında bir HomeModel class ı oluşturduk. Olması gereken modelleri de property gibi içine ekledik.
-            
-            var categories = categoryService.GetCategoriesWithProducts(); // controllerlarda sadece hazır metodları ÇAĞIRIRIZ. context ya da crud olmaz.
-
             // daha sonra bu model i Index action ında instance ını oluşturuyoruz, property leri service ler aracılığıyla tanımlıyoruz ve
             // return olarak bu içinde üç property bulunduran modeli gönderiyoruz.
             // HomeModel model = new HomeModel() { Categories = categories, Products = productService.GetProducts(), 
             //                                     Sliders = sliderService.GetSliders() };
             // ya da burada hiç model oluşturmadan view de component yapısı kullanıyoruz (2. yöntem)
 
-            return View(categories);
+            return View();
         }
         public IActionResult Detail(int id)
         {

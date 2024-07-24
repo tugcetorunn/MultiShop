@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.Data
 {
-    public class ProductImage
+    public class ProductImage : BaseEntity
     {
         public int ProductImageId { get; set; }
         public required string Image { get; set; }

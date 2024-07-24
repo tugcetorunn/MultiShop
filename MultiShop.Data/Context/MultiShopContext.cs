@@ -4,7 +4,8 @@
     {
         //db context connection bilgilerini dışarıdan (bu class veya proje dışından) erişilebilir hale getirdik.
         //configuration dosyasından (appsettings.json, program.cs den veya bu class tan connection bağlantısı kurabiliriz.)
-        //publishment için en uygunu json dosyasından bağlantı vermektir.
+        //publishment için en uygunu json dosyasından bağlantı vermektir. json dosyasına girdiğimiz bilgileri düzenlediğimizde tekrar
+        // publish etmemize gerek yoktur. çünkü json dosyası fiziksel bir dosyadır. Hard code yerine dinamik yapmış oluyoruz.
         public MultiShopContext(DbContextOptions<MultiShopContext> options) : base(options)
         {
             

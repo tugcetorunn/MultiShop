@@ -12,9 +12,9 @@ namespace MultiShop.Business
             mapper = _mapper;
         }
 
-        public List<ProductCommentDto> GetProductComments()
+        public List<ProductCommentDto> GetProductComments(int id)
         {
-            var comments = context.ProductComments.ToList();
+            var comments = context.ProductComments.Where(c => c.ProductId == id).OrderByDescending(c => c.CreatedDate).ToList();
             List<ProductCommentDto> productCommentDtos = mapper.Map<List<ProductCommentDto>>(comments);
             return productCommentDtos;
         }

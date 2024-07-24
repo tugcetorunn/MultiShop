@@ -2,6 +2,6 @@
 {
     public interface IProductCommentService
     {
-        List<ProductCommentDto> GetProductComments();
+        List<ProductCommentDto> GetProductComments(int id);
     }
 }

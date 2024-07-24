@@ -3,7 +3,9 @@
     public interface IProductService
     {
         List<ProductDto> GetProducts();
-        ProductDto? GetProductByCategory(int id);
+        ProductAndCommentsDto? GetProduct(int id);
+        List<ProductDto>? GetProductsByCategory(int id);
         List<ProductDto> GetProductsByShowPlace(ShowPlace showPlace);
+        ProductDetailDto GetProductDetailAndSimilarProducts(int id);
     }
 }
