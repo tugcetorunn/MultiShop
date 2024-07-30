@@ -6,9 +6,11 @@ namespace MultiShop.Presentation.Controllers
     public class CategoryController : Controller
     {
         private readonly ICategoryService categoryService;
-        public CategoryController(ICategoryService _categoryService)
+        private readonly IProductService productService;
+        public CategoryController(ICategoryService _categoryService, IProductService _productService)
         {
             categoryService = _categoryService;
+            productService = _productService;
         }
         public IActionResult Index()
         {
@@ -17,7 +19,7 @@ namespace MultiShop.Presentation.Controllers
 
         public IActionResult GetProductByCategory(int id)
         {
-            return View(categoryService.GetCategoryById(id)); // neden getCategoryById kullandık, product gelmesi lazım??
+            return View(productService.GetAllProductsByCategory(id)); // neden getCategoryById kullandık, product gelmesi lazım??
 
         }
     }

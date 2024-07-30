@@ -32,7 +32,24 @@
                                     <div class="p-3" style="max-width: 700px;">
                                         <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">@item.Header</h1>
                                         <p class="mx-md-5 px-5 animate__animated animate__bounceIn">@item.Content</p>
-                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
+                                        @{
+                                            int categoryId = 0;
+                                            if (item.Header.Contains("Women"))
+                                            {
+                                                categoryId = 2;
+                                            }
+                                            else if (item.Header.Contains("Men"))
+                                            {
+                                                categoryId = 3;
+                                            }
+                                            else if (item.Header.Contains("Kids"))
+                                            {
+                                                categoryId = 4;
+                                            }
+
+                                            string categoryUrl = $"/Category/GetProductByCategory/{categoryId}";
+                                        }
+                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="@categoryUrl">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +62,24 @@
                                     <div class="p-3" style="max-width: 700px;">
                                         <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">@item.Header</h1>
                                         <p class="mx-md-5 px-5 animate__animated animate__bounceIn">@item.Content</p>
-                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
+                                        @{
+                                            int categoryId = 0;
+                                            if (item.Header.Contains("Women"))
+                                            {
+                                                categoryId = 2;
+                                            }
+                                            else if (item.Header.Contains("Men"))
+                                            {
+                                                categoryId = 3;
+                                            }
+                                            else if (item.Header.Contains("Kids"))
+                                            {
+                                                categoryId = 4;
+                                            }
+
+                                            string categoryUrl = $"/Category/GetProductByCategory/{categoryId}";
+                                        }
+                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="@categoryUrl">Shop Now</a>
                                     </div>
                                 </div>
                             </div>

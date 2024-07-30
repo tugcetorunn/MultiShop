@@ -12,7 +12,7 @@
         <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
             <div class="product-item bg-light mb-4">
                 <div class="product-img position-relative overflow-hidden">
-                    <img class="img-fluid w-100" style="height: 200px !important; object-fit: cover !important;" src="@(item.ProductImages?.FirstOrDefault()?.Image)" alt="" href="Product/Detail/@item.ProductId">
+                    <a href="/Product/Detail/@item.ProductId"><img class="img-fluid w-100" style="height: 200px !important; object-fit: contain !important;" src="@(item.ProductImages?.FirstOrDefault()?.Image)" alt=""></a>
                     @* "@item.ProductImages?.FirstOrDefault().Image" ifadesi null olabilir veriyordu, onun yerine
                     "" @(item.ProductImages.FirstOrDefault()?.Image ?? "defaultImagePath")"" ifadesini kullandım (chatgpt)
                     resim var ise ilkini getir, yoksa default resmi getir *@
@@ -26,11 +26,11 @@
                 </div>
                 <div class="text-center py-4">
                                                                      @* daha sonra @item.ProductLink olacak (handwoven-jute-basket) *@
-                    <a class="h6 text-decoration-none text-truncate" href="Product/Detail/@item.ProductId">@item.ProductName</a>
+                    <a class="h6 text-decoration-none text-truncate" href="/Product/Detail/@item.ProductId">@item.ProductName</a>
                     <div class="d-flex align-items-center justify-content-center mt-2">
                         @if (item.SalePrice != null)
                         {
-                            <h5>$@item.SalePrice</h5><h6 class="text-muted ml-2"><del>@item.Price</del></h6>
+                            <h5>$@item.SalePrice</h5><h6 class="text-muted ml-2"><del>$@item.Price</del></h6>
                         }
                         else
                         {

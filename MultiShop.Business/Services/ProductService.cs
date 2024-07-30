@@ -52,6 +52,7 @@ namespace MultiShop.Business
             var products = context.Products.Where(c => c.CategoryId == id)
                                           .Include(p => p.ProductImages)
                                           .Include(p => p.ProductComments)
+                                          .Include(p => p.Category)
                                           .ToList();
             List<ProductDto> productDtos = mapper.Map<List<ProductDto>>(products);
             return productDtos;

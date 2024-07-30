@@ -7,5 +7,6 @@
         List<ProductDto>? GetProductsByCategory(int id);
         List<ProductDto> GetProductsByShowPlace(ShowPlace showPlace);
         ProductDetailDto GetProductDetailAndSimilarProducts(int id);
+        List<ProductDto>? GetAllProductsByCategory(int id);
     }
 }
