@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MultiShop.Data\MultiShop.Data.csproj" />
+    <ProjectReference Include="..\MultiShop.Repository\MultiShop.Repository.csproj" />
   </ItemGroup>
 
 </Project>

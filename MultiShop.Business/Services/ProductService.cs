@@ -1,36 +1,26 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
-using System.Security.Principal;
-
+﻿
 namespace MultiShop.Business
 {
     public class ProductService : IProductService
     {
-        private readonly MultiShopContext context;
+        private readonly IProductRepository productRepository;
         private readonly IMapper mapper;
-        private readonly IConfiguration configuration; // indexteki featured ve recent products için kaç product tan oluşan bir liste
-                                                       // oluşturacağımız bilgisini dinamik hale getirmek için appsettings dosyasına
-                                                       // verdik. json dosyasını okumak için de ıconfiguration ı inject ediyoruz.
         private readonly IProductCommentService commentService;
-        public ProductService(MultiShopContext _context, IMapper _mapper, IConfiguration _configuration, IProductCommentService _commentService)
+        public ProductService(IProductRepository _productRepository, IMapper _mapper, IProductCommentService _commentService)
         {
-            context = _context;
+            productRepository = _productRepository;
             mapper = _mapper;
-            configuration = _configuration;
             commentService = _commentService;
         }
         public List<ProductDto> GetProducts()
         {
-            var products = context.Products.ToList();
+            var products = productRepository.GetAllAsNoTracking();
             List<ProductDto> productDtos = mapper.Map<List<ProductDto>>(products);
             return productDtos;
         }
         public ProductAndCommentsDto GetProduct(int id)
         {
-            var product = context.Products.Where(c => c.ProductId == id)
-                                          .Include(p => p.ProductImages)
-                                          .Include(p => p.ProductComments)
-                                          .FirstOrDefault();
+            var product = productRepository.GetProductWithInclude(id);
             var commentsDto = commentService.GetProductComments(id);
             ProductDto productDto = mapper.Map<ProductDto>(product);
 
@@ -38,46 +28,20 @@ namespace MultiShop.Business
         }
         public List<ProductDto>? GetProductsByCategory(int id)
         {
-            int count = Convert.ToInt32(configuration.GetSection("ProductSettings:SimilarProductShowItemCountInDetail").Value);
-            var products = context.Products.Where(c => c.CategoryId == id)
-                                          .Include(p => p.ProductImages)
-                                          .Include(p => p.ProductComments)
-                                          .Take(count)
-                                          .ToList();
+            var products = productRepository.Get4ProductsByCategory(id);
             List<ProductDto> productDtos = mapper.Map<List<ProductDto>>(products);
             return productDtos;
         }
         public List<ProductDto>? GetAllProductsByCategory(int id)
         {
-            var products = context.Products.Where(c => c.CategoryId == id)
-                                          .Include(p => p.ProductImages)
-                                          .Include(p => p.ProductComments)
-                                          .Include(p => p.Category)
-                                          .ToList();
+            var products = productRepository.GetAllProductsByCategory(id);
             List<ProductDto> productDtos = mapper.Map<List<ProductDto>>(products);
             return productDtos;
         }
 
         public List<ProductDto> GetProductsByShowPlace(ShowPlace showPlace)
         {
-            List<Product> products = new List<Product>();
-
-            int count = Convert.ToInt32(configuration.GetSection("ProductSettings:ProductShowItemCountInIndex").Value);
-            /*int prCount = count != null ? count : 8;*/ // yukarıdaki ifade null gelirse count ı 8 say dedik. 
-
-            if (showPlace == ShowPlace.Featured)
-            {
-                products = context.Products.Where(p => p.ShowPlace == ShowPlace.Featured).Take(count)
-                                           .Include(p => p.ProductImages).Include(p => p.ProductComments).ToList();
-
-            }
-            else
-            {
-                products = context.Products.OrderByDescending(p => p.CreatedDate)
-                                           .Include(p => p.ProductImages)
-                                           .Include(p => p.ProductComments).Take(count)
-                                           .ToList();
-            }
+            var products = productRepository.Get8ProductsByShowPlace(showPlace);
             List<ProductDto> productDtos = mapper.Map<List<ProductDto>>(products);
             return productDtos;
         }

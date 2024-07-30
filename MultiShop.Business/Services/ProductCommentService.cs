@@ -1,20 +1,19 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace MultiShop.Business
 {
     public class ProductCommentService : IProductCommentService
     {
-        private readonly MultiShopContext context;
+        private readonly IProductCommentRepository commentRepository;
         private readonly IMapper mapper;
-        public ProductCommentService(MultiShopContext _context, IMapper _mapper)
+        public ProductCommentService(IProductCommentRepository _commentRepository, IMapper _mapper)
         {
-            context = _context;
+            commentRepository = _commentRepository;
             mapper = _mapper;
         }
 
         public List<ProductCommentDto> GetProductComments(int id)
         {
-            var comments = context.ProductComments.Where(c => c.ProductId == id).OrderByDescending(c => c.CreatedDate).ToList();
+            var comments = commentRepository.GetProductCommentsDesc(id);
             List<ProductCommentDto> productCommentDtos = mapper.Map<List<ProductCommentDto>>(comments);
             return productCommentDtos;
         }
