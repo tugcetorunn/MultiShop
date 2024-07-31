@@ -12,5 +12,6 @@ namespace MultiShop.Repository
         {
             return context.ProductComments.Where(c => c.ProductId == id).OrderByDescending(c => c.CreatedDate).ToList();
         }
+
     }
 }

@@ -4,6 +4,7 @@
     {
         public ProductDto? Product { get; set; }
         public List<ProductCommentDto>? ProductComments { get; set; }
+        public short RatingAvg { get; set; }
         public static ProductAndCommentsDto Create(ProductDto productDto, List<ProductCommentDto> commentDtos)
         {
             return new ProductAndCommentsDto()

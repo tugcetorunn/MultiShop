@@ -16,5 +16,6 @@
         public Category? Category { get; set; }
         public List<ProductImage>? ProductImages { get; set; }
         public List<ProductComment>? ProductComments { get; set; }
+        public short RatingAvg { get; set; }
     }
 }

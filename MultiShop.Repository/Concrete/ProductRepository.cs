@@ -3,12 +3,9 @@ namespace MultiShop.Repository
 {
     public class ProductRepository : Repository<Product>, IProductRepository
     {
-        private readonly IConfiguration configuration; // indexteki featured ve recent products için kaç product tan oluşan bir liste
-                                                       // oluşturacağımız bilgisini dinamik hale getirmek için appsettings dosyasına
-                                                       // verdik. json dosyasını okumak için de ıconfiguration ı inject ediyoruz.
-        public ProductRepository(MultiShopContext context, IConfiguration _configuration) : base(context)
+        
+        public ProductRepository(MultiShopContext context) : base(context)
         {
-            configuration = _configuration;
         }
 
         public Product? GetProductWithInclude(int id)
@@ -19,15 +16,13 @@ namespace MultiShop.Repository
                                    .FirstOrDefault();
         }
 
-        public List<Product> Get4ProductsByCategory(int id)
+        public List<Product> Get4ProductsByCategory(int id, int productCount)
         {
-            int count = Convert.ToInt32(configuration.GetSection("ProductSettings:SimilarProductShowItemCountInDetail").Value);
-            var products = context.Products.Where(c => c.CategoryId == id)
+            return context.Products.Where(c => c.CategoryId == id)
                                           .Include(p => p.ProductImages)
                                           .Include(p => p.ProductComments)
-                                          .Take(count)
+                                          .Take(productCount)
                                           .ToList();
-            return products;
         }
 
         public List<Product> GetAllProductsByCategory(int id)
@@ -39,30 +34,27 @@ namespace MultiShop.Repository
                                           .ToList();
         }
 
-        public List<Product> Get8ProductsByShowPlace(ShowPlace showPlace)
+        public List<Product> Get8ProductsByShowPlace(ShowPlace showPlace, int productCount)
         {
-            List<Product> products = new List<Product>();
-
-            int count = Convert.ToInt32(configuration.GetSection("ProductSettings:ProductShowItemCountInIndex").Value);
-            /*int prCount = count != null ? count : 8;*/ // yukarıdaki ifade null gelirse count ı 8 say dedik. 
-
             if (showPlace == ShowPlace.Featured)
             {
-                products = context.Products.Where(p => p.ShowPlace == ShowPlace.Featured).Take(count)
+                return context.Products.Where(p => p.ShowPlace == ShowPlace.Featured).Take(productCount)
                                            .Include(p => p.ProductImages).Include(p => p.ProductComments).ToList();
 
             }
             else
             {
-                products = context.Products.OrderByDescending(p => p.CreatedDate)
+                return context.Products.OrderByDescending(p => p.CreatedDate)
                                            .Include(p => p.ProductImages)
-                                           .Include(p => p.ProductComments).Take(count)
+                                           .Include(p => p.ProductComments).Take(productCount)
                                            .ToList();
             }
-
-            return products;
         }
 
-        
+        public short GetRatingAvg(int id)
+        {
+            return Convert.ToInt16(context.ProductComments.Where(c => c.ProductId == id).Average(c => c.Rating));
+        }
+
     }
 }

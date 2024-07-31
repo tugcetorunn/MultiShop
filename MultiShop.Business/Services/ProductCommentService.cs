@@ -17,5 +17,6 @@ namespace MultiShop.Business
             List<ProductCommentDto> productCommentDtos = mapper.Map<List<ProductCommentDto>>(comments);
             return productCommentDtos;
         }
+
     }
 }

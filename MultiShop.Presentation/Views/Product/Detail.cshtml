@@ -250,7 +250,7 @@
                                     <div class="media mb-4">
                                         <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;"> @* kullanıcı fotosu eklenecek ya da buradan image kodu silinecek. *@
                                         <div class="media-body">
-                                            <h6>@item.CommenterName<small> - <i>@* 01 Jan 2045 *@</i></small></h6> @* comment lere tarih eklenecek. *@
+                                            <h6>@item.CommenterName<small> - <i>@item.CreatedDate</i></small></h6>
                                             <div class="text-primary mb-2">
                                                 @{
                                                     int x = item.Rating;
