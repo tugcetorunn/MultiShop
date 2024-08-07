@@ -17,6 +17,10 @@ namespace MultiShop.Presentation.Extensions
 
             webApplicationBuilder.Services.AddScoped<IProductCommentService, ProductCommentService>();
             webApplicationBuilder.Services.AddScoped<IProductCommentRepository, ProductCommentRepository>();
+            
+            webApplicationBuilder.Services.AddScoped<IAuthService, AuthService>();
+
+
         }
     }
 }

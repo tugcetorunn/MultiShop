@@ -3,6 +3,7 @@ namespace MultiShop.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
+        //repository deki tüm yapıların async yapılması gerek.
         protected readonly MultiShopContext context;
         // context.Set<TEntity>() her metotta tekrar ettiği için bunu bir değişken haline getirelim; 
         // context.Set<TEntity>() mouse la üstüne geldiğmizde DbSet<TEntity> ye karşılık geldiğini görüyoruz.
@@ -20,11 +21,11 @@ namespace MultiShop.Repository
         }
         public List<TEntity> GetAllAsNoTracking()
         {
-            return dbSet.AsNoTracking().ToList();
+            return dbSet.AsNoTracking().ToList(); // asNoTracking metodu entity lerin state lerini takip etmeyi devre dışı bırakır.
         }
         public TEntity GetById(int id)
         {
-            return dbSet.Find(id);
+            return dbSet.Find(id); // find metodu "primary key" e göre arama bulma yapar.
         }
         public bool Add(TEntity entity)
         {

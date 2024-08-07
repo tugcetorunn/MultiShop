@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews(); // controller ve view leri görebilmesi için
@@ -8,6 +10,10 @@ builder.Services.AddDbContext<MultiShopContext>(options => options
                                                            ,b => b.MigrationsAssembly("MultiShop.Presentation")));
                                                            // db connection edilmesi için
 
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<MultiShopContext>()
+                .AddDefaultTokenProviders(); // 5. adým identity nin entegre edilmesi
+ 
 builder.ServiceExtension(); // ICategoryService gönderdiðimizde bizi CategoryService e götürmesi için yazýlan scope metodlarýn
                             // extension metodunu çalýþtýrdýðýmýz yer
 

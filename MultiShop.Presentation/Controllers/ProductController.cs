@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.Business.Dtos;
-
+﻿
 namespace MultiShop.Presentation.Controllers
 {
     public class ProductController : Controller

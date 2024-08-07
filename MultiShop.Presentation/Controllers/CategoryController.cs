@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
+﻿
 namespace MultiShop.Presentation.Controllers
 {
     //Navbar (Categories) dan gelen request leri karşılayacak. Category lere göre ürün getirecek.

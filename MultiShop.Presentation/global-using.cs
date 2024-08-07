@@ -6,3 +6,5 @@ global using MultiShop.Business;
 global using MultiShop.Business.Mapping;
 global using Microsoft.EntityFrameworkCore.Infrastructure;
 global using MultiShop.Repository;
+global using Microsoft.EntityFrameworkCore.Migrations;
+global using MultiShop.Business.Dtos;

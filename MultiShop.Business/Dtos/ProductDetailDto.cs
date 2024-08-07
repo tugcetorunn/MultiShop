@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
+﻿
 namespace MultiShop.Business.Dtos
 {
     public class ProductDetailDto
